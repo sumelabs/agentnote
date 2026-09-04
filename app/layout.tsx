@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
+import { PwaInstallBoot } from "@/components/pwa-install-boot";
 import { ThemeBoot } from "@/components/theme-boot";
 import { faviconBootScript } from "@/lib/themes";
 import "./globals.css";
@@ -45,6 +46,7 @@ export default function RootLayout({
           afterSignOutUrl="/login"
         >
           <ThemeBoot />
+          <PwaInstallBoot />
           {children}
         </ClerkProvider>
       </body>

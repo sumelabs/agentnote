@@ -229,3 +229,32 @@ export function KeyboardIcon({ size = 14, className }: IconProps) {
     </svg>
   );
 }
+
+/** `download.svg` — used for the "Install app" account-menu row. */
+export function InstallIcon({ size = 14, className }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 16 16"
+      fill="none"
+      className={className}
+      aria-hidden
+    >
+      <path
+        d="M8 2.5V10M8 10L5.25 7.25M8 10L10.75 7.25"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M3 10.5V12.25C3 12.94 3.56 13.5 4.25 13.5H11.75C12.44 13.5 13 12.94 13 12.25V10.5"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
