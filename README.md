@@ -260,6 +260,23 @@ Product trash recovers user mistakes. Body revisions recover a bad overwrite wit
 2. Optionally create a manual backup after enabling.
 3. Restoring a volume backup stages a new volume and rewinds the **entire** database — use for disasters, not single-note recovery ([Railway volume backups](https://docs.railway.com/volumes/backups)).
 
+## Install as app
+
+agentnote ships a web app manifest (`app/manifest.ts` → `/manifest.webmanifest`),
+so it installs like a native app with no store and no service worker:
+
+- **Android Chrome** — accept the "Install app" banner, or open the account
+  menu (avatar, top right) → **Install app**. Chrome builds a WebAPK with the
+  agentnote icon.
+- **Desktop Chrome / Edge** — click the install icon in the address bar, or use
+  the same **Install app** menu row. Safari on macOS: **File → Add to Dock**.
+- **iOS / iPadOS** — Safari **Share → Add to Home Screen**. The home-screen
+  app opens full screen with the agentnote name and dark splash.
+
+The **Install app** row only appears while Chrome has an install prompt
+available and the page is not already running as an installed app. Icons are
+generated from the existing mark by `node scripts/gen-pwa-icons.mjs`.
+
 ## Deploy
 
 Point the project at Vercel, set the Clerk + `DATABASE_URL` (+ `CRON_SECRET`) env vars for Production, attach `memo.chasehuh.com`, and complete the production GitHub OAuth App steps above.

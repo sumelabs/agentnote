@@ -2,12 +2,14 @@
 
 import { useClerk, useUser } from "@clerk/nextjs";
 import { useEffect, useId, useRef, useState } from "react";
-import { SettingsIcon, SignOutIcon } from "./icons";
+import { usePwaInstallPrompt } from "@/lib/pwa/install-prompt";
+import { InstallIcon, SettingsIcon, SignOutIcon } from "./icons";
 import { PoweredBySume } from "./powered-by-sume";
 
 export function AccountMenu({ onOpenSettings }: { onOpenSettings: () => void }) {
   const { user, isLoaded } = useUser();
   const { signOut } = useClerk();
+  const { canInstall, promptInstall } = usePwaInstallPrompt();
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const menuId = useId();
@@ -88,6 +90,20 @@ export function AccountMenu({ onOpenSettings }: { onOpenSettings: () => void }) 
               <SettingsIcon size={14} />
               <span>Settings</span>
             </button>
+            {canInstall ? (
+              <button
+                type="button"
+                className="zed-account__item"
+                role="menuitem"
+                onClick={() => {
+                  setOpen(false);
+                  void promptInstall();
+                }}
+              >
+                <InstallIcon size={14} />
+                <span>Install app</span>
+              </button>
+            ) : null}
             <button
               type="button"
               className="zed-account__item"
